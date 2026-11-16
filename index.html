@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ココロの天気予報。</title>
+
+  <!-- CSSを読み込む -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- jQueryを読み込む -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ヘッダー -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" id="home-button" href="#">
+        KOKORO WEATHER
+      </a>
+
+      <button id="open-history" class="nav-button">
+        ココロ日記
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================
+             01 スタート画面
+        ========================== -->
+    <section id="start-screen" class="screen">
+
+      <p class="eyebrow">1 MINUTE SELF CHECK</p>
+
+      <!-- 太陽と雲のイラスト -->
+      <div class="weather-illustration" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="cloud"></div>
+        <div class="hill hill-back"></div>
+        <div class="hill hill-front"></div>
+      </div>
+
+      <h1>ココロの天気予報。</h1>
+
+      <p class="lead">
+        仕事に向き合う、今日の自分。
+      </p>
+
+      <p class="description">
+        晴れの日も、雨の日もあっていい。<br>
+        まずは今の自分を知ることから。
+      </p>
+
+      <button id="start-button" class="main-button">
+        今日の自分をチェックする →
+      </button>
+
+      <p class="small-text">10の質問・約1分</p>
+
+      <button id="view-history" class="history-link">
+        これまでのココロ日記を見る →
+      </button>
+
+      <!-- アプリの3つの価値 -->
+      <div class="features">
+
+        <div class="feature">
+          <span class="feature-icon">☀️</span>
+          <p>今を知る</p>
+        </div>
+
+        <div class="feature">
+          <span class="feature-icon">🌱</span>
+          <p>一歩を試す</p>
+        </div>
+
+        <div class="feature">
+          <span class="feature-icon">📖</span>
+          <p>変化を楽しむ</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =========================
+             02 質問・回答画面
+        ========================== -->
+
+    <!-- =========================
+     02 質問・回答画面
+========================== -->
+    <section id="quiz-screen" class="screen">
+
+      <p class="eyebrow">WORK CONDITION CHECK</p>
+
+      <!-- 回答進捗 -->
+      <div class="quiz-progress">
+
+        <div class="progress-info">
+          <span>回答進捗</span>
+          <span id="progress-text">0 / 10</span>
+        </div>
+
+        <div class="progress-bg">
+          <div id="progress-bar"></div>
+        </div>
+
+      </div>
+
+      <!-- 質問カード -->
+      <div class="quiz-card">
+
+        <!-- 質問番号 -->
+        <p id="question-number">QUESTION 01</p>
+
+        <!-- 5観点の名称 -->
+        <p id="question-category"></p>
+
+        <!-- JavaScriptで質問を表示する -->
+        <h2 id="question-text"></h2>
+
+        <p class="question-guide">
+          今の自分に近い方を選んでください。
+        </p>
+
+        <!-- 回答ボタン -->
+        <div class="answer-buttons">
+
+          <button id="answer-yes" class="answer-button">
+            <span class="answer-icon">😊</span>
+            <span>うん、そう思う</span>
+            <small>YES</small>
+          </button>
+
+          <button id="answer-no" class="answer-button">
+            <span class="answer-icon">😌</span>
+            <span>今はそうでもない</span>
+            <small>NO</small>
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- 前の質問に戻る -->
+      <button id="prev-button">
+        ← ひとつ前の質問に戻る
+      </button>
+
+      <p class="quiz-note">
+        正解も不正解もありません。<br>
+        今の気持ちのままで。
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+             03 診断結果画面
+        ========================== -->
+
+    <section id="result-screen" class="screen">
+
+      <p class="eyebrow">YOUR CONDITION</p>
+
+      <h2>今日のココロの天気</h2>
+
+      <!-- 総合診断結果 -->
+      <div id="weather-result" class="weather-result">
+
+        <!-- 天気アイコン -->
+        <div id="weather-icon"></div>
+
+        <p id="weather-label"></p>
+
+        <!-- 天気の名称 -->
+        <h2 id="weather-title"></h2>
+
+        <!-- 天気の説明 -->
+        <p id="weather-message"></p>
+
+        <!-- 総合点 -->
+        <div class="result-score">
+          <span id="total-score"></span>
+          <span class="score-max">/ 10</span>
+        </div>
+
+      </div>
+
+      <!-- 総合アドバイス -->
+      <p id="weather-advice"></p>
+
+
+      <!-- 5観点の診断結果 -->
+      <div class="dimension-section">
+
+        <h2>ココロの5つの風景</h2>
+
+        <p class="dimension-description">
+          今の自分を、5つの視点から眺めてみよう。
+        </p>
+
+
+        <!-- 仕事の意義 -->
+        <div class="dimension-item">
+
+          <div class="dimension-heading">
+            <span>仕事の意義</span>
+            <span id="meaning-score"></span>
+          </div>
+
+          <div class="dimension-track">
+            <div id="meaning-bar" class="dimension-fill"></div>
+          </div>
+
+          <p id="meaning-advice" class="dimension-advice"></p>
+
+        </div>
+
+
+        <!-- 成長実感 -->
+        <div class="dimension-item">
+
+          <div class="dimension-heading">
+            <span>成長実感</span>
+            <span id="growth-score"></span>
+          </div>
+
+          <div class="dimension-track">
+            <div id="growth-bar" class="dimension-fill"></div>
+          </div>
+
+          <p id="growth-advice" class="dimension-advice"></p>
+
+        </div>
+
+
+        <!-- 強みの発揮 -->
+        <div class="dimension-item">
+
+          <div class="dimension-heading">
+            <span>強みの発揮</span>
+            <span id="strength-score"></span>
+          </div>
+
+          <div class="dimension-track">
+            <div id="strength-bar" class="dimension-fill"></div>
+          </div>
+
+          <p id="strength-advice" class="dimension-advice"></p>
+
+        </div>
+
+
+        <!-- 主体性 -->
+        <div class="dimension-item">
+
+          <div class="dimension-heading">
+            <span>主体性</span>
+            <span id="autonomy-score"></span>
+          </div>
+
+          <div class="dimension-track">
+            <div id="autonomy-bar" class="dimension-fill"></div>
+          </div>
+
+          <p id="autonomy-advice" class="dimension-advice"></p>
+
+        </div>
+
+
+        <!-- 仕事への意欲 -->
+        <div class="dimension-item">
+
+          <div class="dimension-heading">
+            <span>仕事への意欲</span>
+            <span id="motivation-score"></span>
+          </div>
+
+          <div class="dimension-track">
+            <div id="motivation-bar" class="dimension-fill"></div>
+          </div>
+
+          <p id="motivation-advice" class="dimension-advice"></p>
+
+        </div>
+
+      </div>
+
+
+      <!-- 今のあなたへのヒント -->
+      <div class="result-hint">
+
+        <h3>🌱 今のあなたへのヒント</h3>
+
+        <p id="personal-hint"></p>
+
+      </div>
+
+
+      <!-- 今日の一歩カードへ進む -->
+      <button id="open-card" class="main-button">
+        今日の、小さな一歩を見つける →
+      </button>
+
+      <p class="small-text">
+        今日の天気が、明日も同じとは限りません。
+      </p>
+
+      <button class="back-button">
+        ← 最初に戻る
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+             04 今日の一歩カード
+        ========================== -->
+
+    <!-- =================================
+     04 今日の一歩カード
+================================== -->
+
+    <section id="card-screen" class="screen">
+
+      <p class="eyebrow">YOUR DAILY SMALL STEP</p>
+
+      <h2>今日の、小さな一歩。</h2>
+
+      <p class="card-intro">
+        今の自分に、小さなきっかけを。
+      </p>
+
+
+      <!-- カードを引く前の画面 -->
+
+      <div id="card-before">
+
+        <div class="card-deck">
+          <span class="deck-icon">☀</span>
+          <span class="deck-label">SMALL STEP</span>
+        </div>
+
+        <h3>今日は、どんな一歩？</h3>
+
+        <p class="card-intro">
+          今のあなたに合ったカードを<br>
+          引いてみよう。
+        </p>
+
+        <button id="draw-card" class="main-button">
+          カードを1枚引く
+        </button>
+
+      </div>
+
+
+      <!-- カードを引いた後の画面 -->
+
+      <div id="card-after">
+
+        <div id="action-card">
+
+          <div id="action-icon"></div>
+
+          <p class="action-label">
+            TODAY'S CARD
+          </p>
+
+          <h2 id="action-title"></h2>
+
+          <p id="action-message"></p>
+
+          <p id="action-phrase"></p>
+
+        </div>
+
+
+        <button id="select-card" class="main-button">
+          今日の一歩は、これにする
+        </button>
+
+        <button id="redraw-card">
+          ↻ もう一枚引いてみる
+        </button>
+
+      </div>
+
+
+      <!-- 今日の一歩を決めた後 -->
+
+      <div id="card-complete">
+
+        <div class="complete-icon">✓</div>
+
+        <h3>今日の一歩が決まりました。</h3>
+
+        <p id="selected-action"></p>
+
+        <p class="card-intro">
+          できるときに、できることから。
+        </p>
+
+        <button id="open-diary" class="main-button">
+          ココロ日記へ →
+        </button>
+
+      </div>
+
+
+      <p class="small-text">
+        大きなことをしなくてもいい。<br>
+        小さな一歩から。
+      </p>
+
+      <button id="back-to-result">
+        ← 診断結果に戻る
+      </button>
+
+      <button class="back-button">
+        最初に戻る
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+             05 ココロ日記
+        ========================== -->
+
+    <!-- =================================
+     05 ココロ日記
+================================== -->
+
+    <section id="history-screen" class="screen">
+
+      <p class="eyebrow">MY KOKORO DIARY</p>
+
+      <h2>わたしのココロ日記。</h2>
+
+      <p class="diary-intro">
+        変わっていく自分を、ゆっくり眺めてみよう。
+      </p>
+
+
+      <!-- 今日の記録 -->
+
+      <div id="today-record" class="diary-box">
+
+        <p class="diary-label">TODAY'S RECORD</p>
+
+        <h3>今日の記録</h3>
+
+        <div class="diary-weather">
+
+          <div id="diary-weather-icon"></div>
+
+          <div>
+            <h3 id="diary-weather-title"></h3>
+            <p id="diary-score"></p>
+          </div>
+
+        </div>
+
+
+        <!-- 今日の一歩 -->
+
+        <div class="diary-action">
+
+          <p class="diary-label">
+            今日の、小さな一歩。
+          </p>
+
+          <h3 id="diary-action-title"></h3>
+
+          <p id="diary-action-message"></p>
+
+        </div>
+
+
+        <!-- メモの入力欄 -->
+
+        <label for="diary-memo">
+          今日の気持ち・気づき（任意）
+        </label>
+
+        <textarea id="diary-memo" autocomplete="off" rows="3" maxlength="300" placeholder="今、どんなことを感じていますか？"></textarea>
+
+
+        <!-- 保存ボタン -->
+
+        <button id="save-diary" class="main-button">
+          今日の記録を残す
+        </button>
+
+        <p id="save-message"></p>
+
+      </div>
+
+
+      <!-- 推移グラフ -->
+
+      <div class="diary-box">
+
+        <h3>ココロの天気の変化</h3>
+
+        <p id="history-count"></p>
+
+        <div id="history-chart"></div>
+
+        <p class="chart-note">
+          直近7回の記録
+        </p>
+
+      </div>
+
+
+      <!-- 過去の記録一覧 -->
+
+      <div class="history-section">
+
+        <h3>これまでのココロ日記</h3>
+
+        <div id="history-list"></div>
+
+      </div>
+
+
+      <!-- 履歴の削除 -->
+
+      <button id="delete-history">
+        履歴を削除する
+      </button>
+
+      <p class="small-text">
+        記録は、このブラウザ内に保存されます。
+      </p>
+
+      <button class="back-button">
+        ← 最初に戻る
+      </button>
+
+    </section>
+
+
+  </main>
+
+  <footer>
+    <p>自分のための、小さなセルフチェック。</p>
+    <p>
+      ※学習用の簡易セルフチェックです。<br>
+      心理学的に検証された尺度や人事評価には使用しないでください。
+    </p>
+  </footer>
+
+  <!-- 自作のJavaScriptを読み込む -->
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>

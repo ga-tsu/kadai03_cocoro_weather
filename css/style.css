@@ -1,0 +1,1451 @@
+
+/* =====================================
+   1. 基本設定・カラーパレット
+===================================== */
+
+:root {
+    --background: #F5F4EB;
+    --card: #FFFDF7;
+    --main: #78917B;
+    --text: #455B48;
+    --accent: #E5C478;
+    --line: #DFE3D7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background);
+    color: var(--text);
+    font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN",
+                 sans-serif;
+    line-height: 1.8;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* =====================================
+   2. ヘッダー
+===================================== */
+
+header {
+    border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 24px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.nav-button {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid #B8C5B5;
+    border-radius: 30px;
+    padding: 8px 18px;
+}
+
+
+/* =====================================
+   3. メイン・画面共通
+===================================== */
+
+main {
+    max-width: 680px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.screen {
+    background-color: var(--card);
+    border-radius: 24px;
+    padding: 48px 36px;
+    text-align: center;
+
+    box-shadow: 0 8px 30px rgba(69, 91, 72, 0.06);
+
+    /* すべての画面を最初は非表示にする */
+    display: none;
+}
+
+/* スタート画面だけ最初から表示する */
+#start-screen {
+    display: block;
+}
+
+.eyebrow {
+    color: var(--main);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+h1 {
+    font-size: 36px;
+    letter-spacing: 2px;
+    margin: 24px 0 16px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+.lead {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.description {
+    font-size: 15px;
+    color: #657563;
+    margin: 20px 0 32px;
+}
+
+
+/* =====================================
+   4. 太陽と雲のイラスト
+===================================== */
+
+.weather-illustration {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 200px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius: 18px;
+    background-color: #F7F5EA;
+}
+
+/* 太陽 */
+.sun {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: 22px;
+    left: 56%;
+
+    background-color: var(--accent);
+    border-radius: 50%;
+
+    box-shadow: 0 0 35px rgba(229, 196, 120, 0.35);
+}
+
+/* 雲 */
+.cloud {
+    position: absolute;
+    top: 90px;
+    left: 18%;
+    width: 130px;
+    height: 40px;
+
+    background-color: white;
+    border-radius: 40px;
+    z-index: 2;
+}
+
+/* 雲の丸みを追加する */
+.cloud::before,
+.cloud::after {
+    content: "";
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.cloud::before {
+    width: 55px;
+    height: 55px;
+    top: -25px;
+    left: 18px;
+}
+
+.cloud::after {
+    width: 65px;
+    height: 65px;
+    top: -35px;
+    right: 12px;
+}
+
+/* 丘 */
+.hill {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hill-back {
+    width: 360px;
+    height: 180px;
+    right: -100px;
+    bottom: -115px;
+    background-color: #DCE6D4;
+}
+
+.hill-front {
+    width: 340px;
+    height: 150px;
+    left: -60px;
+    bottom: -95px;
+    background-color: #AEC3A6;
+}
+
+
+/* =====================================
+   5. ボタン
+===================================== */
+
+.main-button {
+    display: block;
+    width: 100%;
+    max-width: 390px;
+    margin: 0 auto;
+
+    background-color: var(--main);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 18px 24px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.main-button:hover {
+    background-color: #617E65;
+    transform: translateY(-2px);
+}
+
+.back-button {
+    background: transparent;
+    color: var(--main);
+    border: none;
+    padding: 12px;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+}
+
+.small-text {
+    font-size: 12px;
+    color: #657563;
+}
+
+
+/* =====================================
+   6. アプリの3つの価値
+===================================== */
+
+.features {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+
+    border-top: 1px solid var(--line);
+    margin-top: 36px;
+    padding-top: 26px;
+}
+
+.feature {
+    flex: 1;
+}
+
+.feature-icon {
+    display: block;
+    font-size: 26px;
+}
+
+.feature p {
+    font-size: 13px;
+}
+
+
+/* =====================================
+   7. フッター
+===================================== */
+
+footer {
+    padding: 12px 24px 30px;
+    text-align: center;
+    color: #657563;
+    font-size: 11px;
+}
+
+
+/* =====================================
+   8. スマートフォン対応
+===================================== */
+
+@media (max-width: 520px) {
+
+    .header-inner {
+        padding: 16px;
+    }
+
+    .logo {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    main {
+        margin: 24px auto;
+        padding: 0 14px;
+    }
+
+    .screen {
+        padding: 32px 20px;
+    }
+
+    h1 {
+        font-size: 27px;
+        letter-spacing: 1px;
+    }
+
+    .lead {
+        font-size: 15px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .main-button {
+        font-size: 14px;
+        padding: 16px 12px;
+    }
+
+    .weather-illustration {
+        height: 180px;
+    }
+
+    .feature p {
+        font-size: 11px;
+    }
+}
+
+
+/* =====================================
+   9. 回答進捗ゲージ
+===================================== */
+
+.quiz-progress {
+    margin: 24px 0 30px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #657563;
+    margin-bottom: 8px;
+}
+
+.progress-bg {
+    width: 100%;
+    height: 8px;
+    background-color: #DFE6D9;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--main);
+    border-radius: 20px;
+
+    /* 横幅が滑らかに変化する */
+    transition: width 0.3s;
+}
+
+
+/* =====================================
+   10. 質問カード
+===================================== */
+
+.quiz-card {
+    background-color: #F8F8F1;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 30px 24px;
+}
+
+#question-number {
+    color: var(--main);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+#question-category {
+    font-size: 13px;
+    color: #657563;
+    margin-top: 8px;
+}
+
+.question-weather {
+    font-size: 65px;
+    margin: 15px 0;
+}
+
+#question-text {
+    font-size: 23px;
+    line-height: 1.8;
+    margin: 20px 0;
+    min-height: 90px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-guide {
+    font-size: 12px;
+    color: #657563;
+}
+
+
+/* =====================================
+   11. 回答ボタン
+===================================== */
+
+.answer-buttons {
+    display: flex;
+    gap: 14px;
+    margin-top: 25px;
+}
+
+.answer-button {
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    border: 2px solid transparent;
+    border-radius: 16px;
+    padding: 24px 10px;
+
+    color: var(--text);
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+#answer-yes {
+    background-color: #E4EDDF;
+}
+
+#answer-no {
+    background-color: #F0ECE2;
+}
+
+.answer-icon {
+    font-size: 32px;
+}
+
+.answer-button small {
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+/* マウスを重ねたとき */
+.answer-button:hover {
+    transform: translateY(-3px);
+    border-color: var(--main);
+
+    box-shadow: 0 5px 12px
+        rgba(69, 91, 72, 0.10);
+}
+
+/* 選択済みの回答 */
+.answer-button.selected {
+    border-color: var(--main);
+    box-shadow: 0 0 0 2px var(--main);
+}
+
+
+/* =====================================
+   12. 前の質問に戻るボタン
+===================================== */
+
+#prev-button {
+    background: transparent;
+    color: var(--main);
+    border: none;
+    font-size: 13px;
+    padding: 15px;
+    margin-top: 18px;
+}
+
+#prev-button:hover {
+    text-decoration: underline;
+}
+
+/* 1問目では戻るボタンを押せなくする */
+#prev-button:disabled {
+    opacity: 0.3;
+    cursor: default;
+    text-decoration: none;
+}
+
+.quiz-note {
+    font-size: 12px;
+    color: #657563;
+}
+
+
+/* =====================================
+   13. スマートフォン対応
+===================================== */
+
+@media (max-width: 520px) {
+
+    .quiz-card {
+        padding: 24px 14px;
+    }
+
+    #question-text {
+        font-size: 19px;
+    }
+
+    .question-weather {
+        font-size: 50px;
+    }
+
+    .answer-buttons {
+        gap: 10px;
+    }
+
+    .answer-button {
+        font-size: 12px;
+        padding: 20px 6px;
+    }
+}
+
+
+/* =====================================
+   14. 質問画面のコンパクト化
+===================================== */
+
+/* 質問画面全体の上下の余白 */
+#quiz-screen {
+    padding-top: 20px;
+    padding-bottom: 24px;
+}
+
+/* 英語の見出し */
+#quiz-screen .eyebrow {
+    margin: 0 0 10px;
+}
+
+/* 回答進捗エリア */
+.quiz-progress {
+    margin: 10px 0 18px;
+    padding: 12px 0;
+
+    /* スクロールしても固定表示 */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--card);
+}
+
+/* 質問カードの上下の余白 */
+.quiz-card {
+    padding: 20px 24px;
+}
+
+/* 観点名の余白 */
+#question-category {
+    margin: 5px 0 10px;
+}
+
+/* 質問文の余白 */
+#question-text {
+    margin: 12px 0;
+    min-height: 60px;
+}
+
+/* 回答ガイドの余白 */
+.question-guide {
+    margin: 8px 0;
+}
+
+/* 回答ボタンエリア */
+.answer-buttons {
+    margin-top: 14px;
+}
+
+/* 回答ボタンの縦幅 */
+.answer-button {
+    padding: 16px 10px;
+    gap: 5px;
+}
+
+/* 回答ボタンのアイコン */
+.answer-icon {
+    font-size: 28px;
+}
+
+/* 前の質問に戻るボタン */
+#prev-button {
+    margin-top: 8px;
+    padding: 10px;
+}
+
+/* 注意書き */
+.quiz-note {
+    margin: 6px 0 0;
+}
+
+
+/* スマートフォン対応 */
+@media (max-width: 520px) {
+
+    #quiz-screen {
+        padding: 16px;
+    }
+
+    .quiz-card {
+        padding: 16px 12px;
+    }
+
+    #question-text {
+        min-height: 60px;
+        font-size: 19px;
+    }
+
+    .answer-button {
+        padding: 14px 6px;
+    }
+}
+
+
+/* =====================================
+   15. 診断結果画面
+===================================== */
+
+#result-screen {
+    padding-top: 24px;
+    padding-bottom: 28px;
+}
+
+#result-screen .eyebrow {
+    margin: 0 0 8px;
+}
+
+#result-screen > h2 {
+    margin: 8px 0 20px;
+}
+
+/* 天気の結果カード */
+.weather-result {
+    padding: 24px 20px;
+    border-radius: 20px;
+}
+
+/* 診断結果ごとの背景色 */
+
+.weather-result.sunny {
+    background-color: #FFF2D5;
+}
+
+.weather-result.cloudy {
+    background-color: #E8EFDF;
+}
+
+.weather-result.rainy {
+    background-color: #EBE8F1;
+}
+
+/* 天気アイコン */
+#weather-icon {
+    font-size: 80px;
+    line-height: 1.3;
+    margin-bottom: 8px;
+}
+
+/* 英語の天気名称 */
+#weather-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 6px 0;
+    color: #657563;
+}
+
+/* 天気のタイトル */
+#weather-title {
+    font-size: 30px;
+    margin: 8px 0 14px;
+}
+
+/* 天気の説明 */
+#weather-message {
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+/* 総合点 */
+.result-score {
+    margin-top: 16px;
+}
+
+#total-score {
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.score-max {
+    font-size: 16px;
+    color: #657563;
+}
+
+/* 総合アドバイス */
+#weather-advice {
+    font-size: 14px;
+    text-align: left;
+    padding: 0 8px;
+    margin: 20px 0;
+}
+
+
+/* =====================================
+   16. 5観点の診断結果
+===================================== */
+
+.dimension-section {
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    margin-top: 24px;
+    text-align: left;
+}
+
+.dimension-section h2 {
+    font-size: 23px;
+    margin: 0 0 6px;
+}
+
+.dimension-description {
+    font-size: 12px;
+    color: #657563;
+    margin: 0 0 24px;
+}
+
+/* 各観点のカード */
+.dimension-item {
+    margin-bottom: 22px;
+}
+
+/* 観点名と点数 */
+.dimension-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* グラフの背景 */
+.dimension-track {
+    width: 100%;
+    height: 10px;
+    border-radius: 20px;
+    background-color: #E4E7DD;
+    overflow: hidden;
+}
+
+/* グラフの色がつく部分 */
+.dimension-fill {
+    width: 0%;
+    height: 100%;
+    background-color: var(--main);
+    border-radius: 20px;
+    transition: width 0.7s ease;
+}
+
+/* 観点ごとのアドバイス */
+.dimension-advice {
+    color: #657563;
+    font-size: 12px;
+    line-height: 1.8;
+    margin: 8px 0 0;
+}
+
+
+/* =====================================
+   17. 今のあなたへのヒント
+===================================== */
+
+.result-hint {
+    background-color: #F0F2E8;
+    border-radius: 16px;
+    padding: 20px;
+    margin: 24px 0;
+    text-align: left;
+}
+
+.result-hint h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.result-hint p {
+    font-size: 13px;
+    margin: 0;
+}
+
+
+/* =====================================
+   18. スマートフォン対応
+===================================== */
+
+@media (max-width: 520px) {
+
+    #result-screen {
+        padding: 18px 16px;
+    }
+
+    #weather-icon {
+        font-size: 65px;
+    }
+
+    #weather-title {
+        font-size: 24px;
+    }
+
+    .weather-result {
+        padding: 20px 14px;
+    }
+
+    .dimension-section h2 {
+        font-size: 20px;
+    }
+
+    .dimension-advice {
+        font-size: 12px;
+    }
+}
+
+
+/* =====================================
+   19. 今日の一歩カード画面
+===================================== */
+
+#card-screen {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    text-align: center;
+}
+
+#card-screen .eyebrow {
+    margin: 0 0 8px;
+}
+
+#card-screen > h2 {
+    margin: 8px 0;
+}
+
+.card-intro {
+    font-size: 14px;
+    color: #657563;
+    line-height: 1.8;
+    margin: 10px 0 18px;
+}
+
+
+/* =====================================
+   20. カードを引く前のデザイン
+===================================== */
+
+.card-deck {
+    width: 145px;
+    height: 190px;
+
+    margin: 24px auto;
+
+    background-color: #78917B;
+    color: #FFFDF7;
+
+    border: 5px double #D9E3D3;
+    border-radius: 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    box-shadow: 8px 8px 0 #D9E3D3;
+
+    transition: transform 0.3s;
+}
+
+.card-deck:hover {
+    transform: translateY(-5px);
+}
+
+.deck-icon {
+    font-size: 65px;
+    color: #E5C478;
+    line-height: 1;
+}
+
+.deck-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+#card-before h3 {
+    margin: 16px 0 8px;
+}
+
+
+/* =====================================
+   21. カードを引いた後のデザイン
+===================================== */
+
+#card-after {
+    display: none;
+}
+
+#action-card {
+    background-color: #FFFDF7;
+
+    border: 1px solid #D3DACB;
+    border-radius: 20px;
+
+    padding: 24px 20px;
+    margin: 18px 0;
+
+    box-shadow: 0 5px 18px
+        rgba(69, 91, 72, 0.06);
+}
+
+
+/* カードのイラスト */
+
+#action-icon {
+    font-size: 65px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.action-label {
+    color: #78917B;
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 6px 0;
+}
+
+
+/* カードのタイトル */
+
+#action-title {
+    color: var(--text);
+    font-size: 28px;
+    margin: 10px 0 18px;
+}
+
+
+/* 行動の提案 */
+
+#action-message {
+    font-size: 17px;
+    line-height: 1.9;
+    margin: 12px 0 20px;
+}
+
+
+/* カードのメッセージ */
+
+#action-phrase {
+    border-top: 1px solid #DFE3D7;
+    padding-top: 14px;
+    margin: 0;
+    color: #657563;
+    font-size: 13px;
+}
+
+
+/* カードのグループ別背景色 */
+
+#action-card.sunny-card {
+    background-color: #FFF7E6;
+}
+
+#action-card.cloudy-card {
+    background-color: #F0F4E9;
+}
+
+#action-card.rainy-card {
+    background-color: #F1EEF5;
+}
+
+
+/* =====================================
+   22. カード決定後のデザイン
+===================================== */
+
+#card-complete {
+    display: none;
+
+    background-color: #E8EFDF;
+    border-radius: 20px;
+
+    padding: 24px 18px;
+    margin: 20px 0;
+}
+
+.complete-icon {
+    font-size: 40px;
+    color: #78917B;
+    line-height: 1.4;
+}
+
+#selected-action {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.8;
+    margin: 14px 0;
+}
+
+
+/* =====================================
+   23. 補助ボタン
+===================================== */
+
+#redraw-card,
+#back-to-result {
+    display: block;
+
+    background-color: transparent;
+    border: none;
+    color: var(--main);
+
+    font-size: 13px;
+    padding: 12px;
+    margin: 6px auto;
+}
+
+#redraw-card:hover,
+#back-to-result:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================
+   24. スマートフォン対応
+===================================== */
+
+@media (max-width: 520px) {
+
+    #card-screen {
+        padding: 18px 16px;
+    }
+
+    #action-card {
+        padding: 20px 16px;
+    }
+
+    #action-title {
+        font-size: 24px;
+    }
+
+    #action-message {
+        font-size: 15px;
+    }
+
+    #action-icon {
+        font-size: 55px;
+    }
+
+    .card-deck {
+        width: 125px;
+        height: 165px;
+    }
+}
+
+
+
+/* =====================================
+   25. ココロ日記の基本デザイン
+===================================== */
+
+#history-screen {
+    padding-top: 24px;
+    padding-bottom: 24px;
+}
+
+#history-screen .eyebrow {
+    margin: 0 0 8px;
+}
+
+#history-screen > h2 {
+    margin: 8px 0;
+}
+
+.diary-intro {
+    font-size: 14px;
+    color: #657563;
+    margin: 8px 0 24px;
+}
+
+.diary-box {
+    background-color: #FFFDF7;
+    border: 1px solid #D3DACB;
+    border-radius: 20px;
+    padding: 20px;
+    margin: 18px 0;
+    text-align: left;
+}
+
+.diary-box h3 {
+    margin: 6px 0 12px;
+}
+
+.diary-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #78917B;
+    margin: 0 0 6px;
+}
+
+
+/* =====================================
+   26. 今日の記録
+===================================== */
+
+.diary-weather {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background-color: #E8EFDF;
+    border-radius: 14px;
+    padding: 16px;
+    margin: 12px 0;
+}
+
+#diary-weather-icon {
+    font-size: 45px;
+}
+
+#diary-weather-title {
+    font-size: 18px;
+    margin: 0 0 4px;
+}
+
+#diary-score {
+    font-size: 14px;
+    margin: 0;
+}
+
+.diary-action {
+    border-top: 1px solid #DFE3D7;
+    border-bottom: 1px solid #DFE3D7;
+    padding: 16px 0;
+    margin: 18px 0;
+}
+
+#diary-action-title {
+    font-size: 18px;
+}
+
+#diary-action-message {
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+
+/* =====================================
+   27. メモ入力欄
+===================================== */
+
+#today-record label {
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#diary-memo {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    background-color: #F7F7F0;
+    color: #455B48;
+
+    border: 1px solid #D3DACB;
+    border-radius: 12px;
+
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.8;
+
+    padding: 12px;
+    margin: 0 0 16px;
+
+    resize: vertical;
+}
+
+#diary-memo:focus {
+    outline: 2px solid #A8BE9D;
+}
+
+#save-message {
+    font-size: 13px;
+    color: #657563;
+    text-align: center;
+    margin: 10px 0 0;
+}
+
+#save-diary:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+
+/* =====================================
+   28. 推移グラフ
+===================================== */
+
+#history-count {
+    font-size: 12px;
+    color: #657563;
+    margin: 0 0 12px;
+}
+
+#history-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    min-height: 180px;
+    padding-top: 12px;
+}
+
+.chart-column {
+    flex: 1;
+    min-width: 0;
+    max-width: 65px;
+    text-align: center;
+}
+
+.chart-score {
+    font-size: 12px;
+    margin: 0 0 5px;
+}
+
+.chart-track {
+    height: 130px;
+    background-color: #F0F2E9;
+    border-radius: 8px;
+
+    display: flex;
+    align-items: flex-end;
+
+    overflow: hidden;
+}
+
+.chart-bar {
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+}
+
+.chart-bar.sunny {
+    background-color: #E5C478;
+}
+
+.chart-bar.cloudy {
+    background-color: #91AD87;
+}
+
+.chart-bar.rainy {
+    background-color: #B5AAC7;
+}
+
+.chart-date {
+    color: #657563;
+    font-size: 10px;
+    margin: 6px 0 0;
+}
+
+.chart-icon {
+    font-size: 20px;
+}
+
+.chart-note {
+    text-align: center;
+    font-size: 11px;
+    color: #657563;
+    margin: 14px 0 0;
+}
+
+
+/* =====================================
+   29. 過去の記録一覧
+===================================== */
+
+.history-section {
+    text-align: left;
+    margin-top: 28px;
+}
+
+.history-item {
+    background-color: #FFFDF7;
+    border: 1px solid #D3DACB;
+    border-radius: 16px;
+    padding: 16px;
+    margin: 12px 0;
+}
+
+.history-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 12px;
+    color: #657563;
+    margin-bottom: 12px;
+}
+
+.history-weather {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.history-weather-icon {
+    font-size: 34px;
+}
+
+.history-weather-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 5px;
+}
+
+.history-action {
+    font-size: 12px;
+    color: #657563;
+    margin: 0;
+}
+
+.history-memo {
+    border-top: 1px solid #DFE3D7;
+    padding-top: 12px;
+    margin: 12px 0 0;
+    font-size: 13px;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.history-empty {
+    width: 100%;
+    text-align: center;
+    color: #657563;
+    font-size: 13px;
+    padding: 20px 0;
+}
+
+
+/* =====================================
+   30. 履歴削除ボタン
+===================================== */
+
+#delete-history {
+    background-color: transparent;
+    border: none;
+    color: #98847E;
+    font-size: 12px;
+    padding: 12px;
+    margin: 18px 0 0;
+    cursor: pointer;
+}
+
+#delete-history:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================
+   31. スマートフォン対応
+===================================== */
+
+@media (max-width: 520px) {
+
+    #history-screen {
+        padding: 18px 16px;
+    }
+
+    .diary-box {
+        padding: 16px;
+    }
+
+    #history-chart {
+        gap: 5px;
+    }
+
+    .chart-track {
+        height: 110px;
+    }
+
+    .chart-date {
+        font-size: 9px;
+    }
+
+    #diary-weather-title {
+        font-size: 16px;
+    }
+}
+
+
+/* スタート画面の日記ボタン */
+
+.history-link {
+    display: block;
+    background-color: transparent;
+    border: none;
+    color: #78917B;
+    font-size: 13px;
+    padding: 12px;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.history-link:hover {
+    text-decoration: underline;
+}
