@@ -383,6 +383,12 @@ $("#open-history").on("click", function () {
 
     showScreen("#history-screen");
 
+    // 日記の内容を準備する
+    prepareDiary();
+
+    // 過去の記録だけを表示する
+    $("#today-record").hide();
+
 });
 
 
